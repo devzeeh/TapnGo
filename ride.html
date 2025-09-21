@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fare Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        main {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.8rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.7rem;
+            color: #34495e;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 12px;
+            cursor: pointer;
+        }
+
+        select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        select option {
+            padding: 12px;
+            font-size: 1rem;
+            background-color: white;
+            color: #2c3e50;
+        }
+
+        select option:hover {
+            background-color: #f8f9fa;
+        }
+
+        optgroup {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .location-icon {
+            color: #3498db;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 1.5rem;
+            }
+
+            select {
+                padding: 10px 14px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>🚌 Bus Fare Calculator</h1>
+        <form action="./fareCalulation.php" method="post">
+            <div class="form-group">
+                <label for="start">📍 Origin Destination</label>
+                <select name="start" id="start">
+                    <optgroup label="Meycauayan Area">
+                        <option value="Meycauayan">Meycauayan</option>
+                    </optgroup>
+                    <optgroup label="Marilao Area">
+                      <option value="SM Marilao">SM Marilao</option>
+                        <option value="Fortune Market Marilao">Fortune Market Marilao</option>
+                        <option value="HyperMarket Marilao">HyperMarket Marilao</option>
+                        <option value="Pambayang Dalubhasan ng Marilao">Pambayang Dalubhasan ng Marilao</option>
+                    </optgroup>
+                    <optgroup label="Bocaue Area">
+                        <option value="McdoDonald's Lolomboy">McDonald's Lolomboy</option>
+                        <option value="JILCF">JILCF</option>
+                        <option value="Puregold Bocaue">Puregold Bocaue</option>
+                        <option value="Bocaue Crossing">Bocaue Crossing</option>
+                        <option value="DYCI-Wakas">DYCI-Wakas</option>
+                    </optgroup>
+                    <optgroup label="Balagtas & Beyond">
+                        <option value="Robinson Balagtas">Robinson Balagtas</option>
+                        <option value="STI Balagtas">STI Balagtas</option>
+                        <option value="WalterMart Guiguinto">WalterMart Guiguinto</option>
+                        <option value="Bulsu Malolos">Bulsu Malolos</option>
+                        <option value="Calumpit">Calumpit</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="end">🏁 Last Destination</label>
+                <select name="end" id="end">
+                  <optgroup label="Meycauayan Area">
+                    <option value="Meycauayan">Meycauayan</option>
+                </optgroup>
+                <optgroup label="Marilao Area">
+                  <option value="SM Marilao">SM Marilao</option>
+                    <option value="Fortune Market Marilao">Fortune Market Marilao</option>
+                    <option value="HyperMarket Marilao">HyperMarket Marilao</option>
+                    <option value="Pambayang Dalubhasan ng Marilao">Pambayang Dalubhasan ng Marilao</option>
+                </optgroup>
+                <optgroup label="Bocaue Area">
+                    <option value="McdoDonald's Lolomboy">McDonald's Lolomboy</option>
+                    <option value="JILCF">JILCF</option>
+                    <option value="Puregold Bocaue">Puregold Bocaue</option>
+                    <option value="Bocaue Crossing">Bocaue Crossing</option>
+                    <option value="DYCI-Wakas">DYCI-Wakas</option>
+                </optgroup>
+                <optgroup label="Balagtas & Beyond">
+                    <option value="Robinson Balagtas">Robinson Balagtas</option>
+                    <option value="STI Balagtas">STI Balagtas</option>
+                    <option value="WalterMart Guiguinto">WalterMart Guiguinto</option>
+                    <option value="Bulsu Malolos">Bulsu Malolos</option>
+                    <option value="Calumpit">Calumpit</option>
+                </optgroup>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="discount">💳 Discount Type</label>
+                <select name="discount" id="discount">
+                    <option value="None">No Discount</option>
+                    <option value="Student">Student (20% Off)</option>
+                    <option value="Senior">Senior Citizen (20% Off)</option>
+                    <option value="PWD">PWD (20% Off)</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">Calculate Fare</button>
+        </form>
+    </main>
+    <script>
+      document.getElementById('start').addEventListener('change', function() {
+          const startSelect = document.getElementById('start');
+          const endSelect = document.getElementById('end');
+          const selectedValue = startSelect.value;
+
+          // Enable all options first
+          Array.from(endSelect.options).forEach(option => {
+              option.disabled = false;
+          });
+
+          // Disable the selected start destination in end destination dropdown
+          Array.from(endSelect.options).forEach(option => {
+              if (option.value === selectedValue) {
+                  option.disabled = true;
+              }
+          });
+
+          // If currently selected end destination is same as start, reset it
+          if (endSelect.value === selectedValue) {
+              endSelect.value = '';
+          }
+      });
+  </script>
+</body>
+</html>

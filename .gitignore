@@ -1,0 +1,4 @@
+# ignore .env and ESP
+.env
+config.php
+.htaccess

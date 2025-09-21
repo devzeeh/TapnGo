@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>fare calculator</h1>
+    <label for="start-destination">Entry KM: </label>
+    <select id="start-destination">
+      <option value="Station 1">meycauayan</option>
+      <option value="Station 2">sta maria</option>
+      <option value="Station 3">bocaue</option>
+    </select>
+
+    <label for="end-destination">Exit KM:</label>
+    <select id="end-destination">
+      <option value="Station 1">meycauayan</option>
+      <option value="Station 2">sta maria</option>
+      <option value="Station 3">bocaue</option>
+    </select>
+    <button id="calculate-fare" onclick="calculateFare()">submit</button>
+    <div id="fare-result">hey :</div>
+
+    <script>
+        function calculateFare() {
+           const fareMatrix = {
+        "Station 1": {
+          "Static 1": 0,
+          "Station 2": 2.0,
+          "Station 3": 4.0,
+        },
+        "Station 2": {
+          "Station 1": 2.0,
+          "Station 2": 0,
+          "Station 3": 2.0,
+        },
+        "Station 3": {
+          "Station 1": 4.0,
+          "Station 2": 2.0,
+          "Station 3": 0,
+        },
+      };
+      document.getElementById("calculate-fare").addEventListener("click", () => {
+          const startDestination = document.getElementById("start-destination").value;
+          const endDestination = document.getElementById("end-destination").value;
+          const fare = fareMatrix[startDestination][endDestination];
+
+          document.getElementById("fare-result").innerHTML = 'FARE: $${fare.toFixed(2)}';
+        }); 
+        }
+      
+    </script>
+  </body>
+</html>

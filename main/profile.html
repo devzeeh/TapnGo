@@ -1,0 +1,158 @@
+<?php
+// Include the PHP file
+include_once '../backend/get_card.php';
+// include the transaction fetching script
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"><!--icons libraries-->
+    <link rel="stylesheet" href="../style/Style.css">
+    <link rel="icon" href="../assets/Techno Card3.png">
+    <title>Traverse | Profile</title>
+    <style>
+        .profile-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #666;
+        font-weight: 500;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+    }
+
+    .card-status {
+        position: absolute;
+        right: 10px;
+        top: 35px;
+        background: #28a745;
+        color: white;
+        padding: 0.2rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .save-btn, .cancel-btn {
+        padding: 0.8rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .save-btn {
+        background: #007bff;
+        color: white;
+        flex: 2;
+    }
+
+    .cancel-btn {
+        background: #e0e0e0;
+        color: #666;
+        flex: 1;
+    }
+    </style>
+</head>
+<body>
+    <aside class="sidenav">
+        <div>
+            <div class="side-icon">
+                <a href=""><img src="../assets/PayMobi.png" alt="Logo"></a>
+            </div>
+            <hr>
+            <div class="side-button">
+                <a href="./index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="./topUp.html"><i class="fas fa-wallet"></i> Top Up</a>
+                <a href="./transaction.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="./report.html"><i class="fas fa-chart-bar"></i> Report</a>
+                <a href="./updates.html"><i class="fas fa-bell"></i> Updates</a>
+                <a href="./profile.html" style="color: #007bff;"><i class="fas fa-cog"></i> Profile</a>
+            </div>
+        </div>
+    </aside>
+    <nav>
+        <div class="nav-logout">
+            <a href="../Login.html">Logout <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span></a>
+        </div>
+    </nav>
+
+    <main>
+        <section>
+            <div class="profile-container">
+                <h1 style="text-align: center;">My Profile</h1>
+                <form class="profile-form" id="profileForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" value="<?php echo getUser(); ?>" disabled style="cursor: no-drop;">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" value="<?php echo getUserEmail(); ?>" disabled style="cursor: no-drop;">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-id-card"></i> Card Number</label>
+                        <input type="text" id="cardNumber" value="<?php
+                                        echo CardDetails();
+                                            ?>" readonly disabled 
+                           style="background-color: #f5f5f5; color: #666; letter-spacing: 1px; cursor: no-drop;">
+                        <span class="card-status">
+                            <?php echo CardStatus();?>
+                        </span>
+                    </div>
+
+                    <div class="form-group password-group">
+                        <label><i class="fas fa-lock"></i> Change Password</label>
+                        <input type="password" id="currentPassword" placeholder="Current password">
+                        <input type="password" id="newPassword" placeholder="New password">
+                        <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="save-btn">Save Changes</button>
+                        <button type="button" class="cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="../script/profile.js"></script>
+</body>
+</html>

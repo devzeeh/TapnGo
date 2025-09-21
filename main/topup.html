@@ -1,0 +1,197 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"><!--icons libraries-->
+    <link rel="stylesheet" href="../style/Style.css">
+    <link rel="icon" href="../assets/Favicon/PayMobi.png">
+    <title>Traverse | Top Up Card</title>
+</head>
+<body>
+    <aside class="sidenav">
+        <div>
+            <div class="side-icon">
+                <a href=""><img src="../assets/PayMobi.png" alt="Logo"></a>
+            </div>
+            <hr>
+            <div class="side-button">
+                <a href="./index.html" ><i class="fas fa-home"></i> Home</a>
+                <a href="./topUp.html" style="color: #007bff;"><i class="fas fa-wallet"></i> Top Up</a>
+                <a href="./transaction.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="./report.html"><i class="fas fa-chart-bar"></i> Report</a>
+                <a href="./updates.html"><i class="fas fa-bell"></i> Updates</a>
+                <a href="./profile.html"><i class="fas fa-cog"></i> Profile</a>
+            </div>
+        </div>
+    </aside>
+    <nav>
+        <div class="nav-logout">
+            <a href="../Login.html">Logout <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span></a>
+        </div>
+    </nav>
+
+    <main style="margin-left: 30%;">
+        <section><!--topup card-->
+            <h1>Top Up your card here</h1>
+            <div class="topup-card">
+                <div class="bottom-text">
+                    <div>
+                        <div class="amount" style="font-size: 20px;"><h1>Top Up: <span style="color: black;">₱ 0.00 </span></h1> </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section><!--topup amount-->
+            <div class="top-up">
+                <form action="../checkout/checkout.php" method="POST">
+                    <div class="topup-amount">
+                        <label for="card-amount">Amount</label>
+                        <input type="number" id="card-amount" name="card-amount" placeholder="Enter amount" required>
+                        <button type="submit" class="red-button">Checkout</button>
+                        <button type="reset" class="red-button">Cancel</button>
+                    </div>
+                    <p>You will be charged a service fee of <span style="font-weight: 900;";>PHP 10.00</span></p>
+                    <div id="error-msg" class="error-message"></div>
+                </form> 
+            </div>
+        </section>
+
+        <section>
+            <div class="topup-button-grid">
+                <button>50</button>
+                <button>100</button>
+                <button>200</button>
+                <button>500</button>
+                <button>1000</button>
+                <button>1500</button>
+                <button>2000</button>
+                <button>2500</button>
+                <button>5000</button>
+            </div>
+        </section>
+    </main>
+
+
+    <script src = "../script/topUp.js";>
+        
+        /*const MAX_AMOUNT = 20000;
+        const MIN_AMOUNT = 50;
+        const inputField = document.getElementById('card-amount');
+        const checkoutButton = document.querySelector('button[type="submit"]');
+    
+        // Select ALL amount buttons
+        const buttonAmounts = document.querySelectorAll('.topup-button-grid button');
+        
+        // Save original checkout color
+        const originalCheckoutColor = checkoutButton.style.backgroundColor;
+    
+        // Disable checkout button initially
+        checkoutButton.disabled = true;
+        checkoutButton.style.backgroundColor = '#cccccc'; // light gray
+    
+        // Event listener for grid buttons
+        document.querySelector('.topup-button-grid').addEventListener('click', function(e) {
+            if (e.target.tagName === 'BUTTON') {
+                const amount = parseInt(e.target.textContent);
+                validateAmount(amount);
+    
+                // Highlight the clicked button, fade others
+                buttonAmounts.forEach(button => {
+                    if (button === e.target) {
+                        button.style.opacity = '1'; // clicked button normal
+                    } else {
+                        button.style.opacity = '0.5'; // others faded
+                    }
+                });
+            }
+        });
+    
+        // Event listener for input field
+        inputField.addEventListener('input', function(e) {
+            const amount = parseInt(e.target.value);
+            if (!e.target.value) {
+                checkoutButton.disabled = true;
+                checkoutButton.style.backgroundColor = '#cccccc'; // light gray
+                resetValidation();
+                clearButtonHighlight();
+                return;
+            }
+            validateAmount(amount);
+            clearButtonHighlight(); // if user types manually, remove faded buttons
+        });
+    
+        // Event listener for cancel button
+        document.querySelector('button[type="reset"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            clearAmounts();
+            resetValidation();
+            checkoutButton.disabled = true;
+            checkoutButton.style.backgroundColor = '#cccccc'; // light gray
+            clearButtonHighlight();
+        });
+    
+        function validateAmount(amount) {
+            if (amount < MIN_AMOUNT) {
+                showError('Minimum top up amount is ₱50');
+                checkoutButton.disabled = true;
+                checkoutButton.style.backgroundColor = '#cccccc'; 
+            } else if (amount > MAX_AMOUNT) {
+                showError('Maximum amount is ₱20,000');
+                checkoutButton.disabled = true;
+                checkoutButton.style.backgroundColor = '#cccccc';
+            } else {
+                updateAmounts(amount);
+                resetValidation();
+                checkoutButton.disabled = false;
+                checkoutButton.style.backgroundColor = originalCheckoutColor; // restore color
+            }
+        }
+    
+        function updateAmounts(amount) {
+            // Update input field
+            inputField.value = amount;
+            // Update top-up card span
+            const formattedAmount = parseFloat(amount).toLocaleString('en-PH', {
+                style: 'currency',
+                currency: 'PHP'
+            });
+            document.querySelector('.amount span').textContent = formattedAmount;
+        }
+    
+        function clearAmounts() {
+            inputField.value = '';
+            document.querySelector('.amount span').textContent = '₱ 0.00';
+        }
+    
+        function showError(message) {
+            inputField.style.border = '2px solid red';
+            const errorDiv = document.querySelector('.error-message');
+            errorDiv.style.display = 'block';
+            errorDiv.style.color = 'red';
+            errorDiv.style.marginTop = '5px';
+            errorDiv.textContent = message;
+        }
+    
+        function resetValidation() {
+            inputField.style.border = '';
+            const errorMessage = document.querySelector('.error-message');
+            if (errorMessage) {
+                errorMessage.style.display = 'none';
+                errorMessage.textContent = '';
+            }
+        }
+    
+        function clearButtonHighlight() {
+            buttonAmounts.forEach(button => {
+                button.style.opacity = '1'; // reset all buttons to normal
+            });
+        }*/
+    </script>
+    
+</body>
+</html>

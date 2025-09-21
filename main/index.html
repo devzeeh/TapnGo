@@ -1,0 +1,146 @@
+<?php
+// index.php
+// Include the database connection file
+include '../backend/db_connect.php';
+// include the transaction fetching script
+include '../backend/get_transactions.php';
+include '../backend/getTimeDay.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"><!--icons libraries-->
+    <link rel="stylesheet" href="../style/Style.css">
+    <link rel="icon" href="../assets/Favicon/PayMobi.png">
+    <title>Traverse | Dashboard - Welcome Customer</title>
+    <style>
+        .main-card{
+            background-image: url('../assets/PayMobi\ Card.png');
+        }
+        
+    </style>
+</head>
+<body>
+    <aside class="sidenav">
+        <div>
+            <div class="side-icon">
+                <a href=""><img src="../assets/PayMobi.png" alt="Logo"></a>
+            </div>
+            <hr>
+            <div class="side-button">
+                <a href="./index.html" style="color: #007bff;"><i class="fas fa-home"></i> Home</a>
+                <a href="./topUp.html"><i class="fas fa-wallet"></i> Top Up</a>
+                <a href="./transaction.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="./report.html"><i class="fas fa-chart-bar"></i> Report</a>
+                <a href="./updates.html"><i class="fas fa-bell"></i> Updates</a>
+                <a href="./profile.html"><i class="fas fa-cog"></i> Profile</a>
+            </div>
+        </div>
+    </aside>
+    <nav>
+        <div class="nav-logout">
+            <a href="../backend/redirect.php">Logout <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span></a>
+        </div>
+    </nav>
+    
+    <main>
+        <section><!--dashboard card-->
+            <div class="dashboard-main">
+                <h1><?php echo getTime() . ", " . getLoggedInUserName(); ?></h1>
+                <div class="dashboard-card">
+                    <section>
+                        <div class="main-card">
+                            <div></div>
+                            <div class="bottom-text">
+                                <div>
+                                    <h1>Total Amount</h1>
+                                    <div class="amount">
+                                        <h2>
+                                            <?php
+                                            echo '₱' . number_format(GetTotalAMount(), 2);
+                                            ?>
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h1>Valid Until</h1>
+                                    <div class="valid">
+                                        <h2>
+                                           <?php
+                                            echo CardValidity();
+                                            ?> 
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+    
+                    <!--dashboard card column-->
+                    <div class="column">
+                        <section>
+                            <div class="transactions-card">
+                                <h1>Total Spend</h1>
+                                <div class="bottom-text">
+                                    <div>
+                                        <div class="amount" style="font-size: 20px;">
+                                            <?php
+                                            // displaying the total spend amount
+                                            echo '₱' . number_format(totalSpend(), 2);
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    
+                        <section>
+                            <div class="transactions-1-card">
+                                <h1>Reward Earn</h1>
+                                <div class="bottom-text">
+                                    <div>
+                                        <div class="amount" style="font-size: 20px;">
+                                            <?php
+                                            // displaying the total spend amount
+                                            echo '₱' . number_format(UserEarned(), 2);
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div><!--end of dashboard card-->
+    
+                <!-- -->
+                <section>
+                    <div class="card-navigation">
+                        
+                    </div>
+                </section>
+            </div><!--end of dashboard main cards-->
+        </section>
+
+        <section><!--transaction table-->
+            <div class="transaction-table">
+                <div class="container">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+                        <h1 style="margin: 0;">Transaction List</h1>
+                        <a href="./transaction.html" style="text-decoration: none; color: #007bff; font-weight: bold;">
+                            See more <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <?php
+                    // Call the function to display transaction
+                    echo displayTransactions(3);// this function will output the transaction table
+                    ?>
+                </div>
+            </div><!--End of Transaction Table-->
+        </section>
+
+    </main>
+</body>
+</html>

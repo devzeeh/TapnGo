@@ -1,0 +1,52 @@
+<?php
+include_once '../backend/db_connect.php';
+// include the transaction fetching script
+include_once '../backend/get_transactions.php';
+// include for not allowing direct access to the pageinclude '../backend/redirect.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"><!--icons libraries-->
+    <link rel="stylesheet" href="../style/Style.css">
+    <link rel="icon" href="../assets/Favicon/PayMobi.png">
+    <title>Traverse | Transactions</title>
+</head>
+<body>
+    <aside class="sidenav">
+        <div>
+            <div class="side-icon">
+                <a href=""><img src="../assets/PayMobi.png" alt="Logo"></a>
+            </div>
+            <hr>
+            <div class="side-button">
+                <a href="./index.html" ><i class="fas fa-home"></i> Home</a>
+                <a href="./topUp.html" ><i class="fas fa-wallet"></i> Top Up</a>
+                <a href="./transaction.html" style="color: #007bff;"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="./report.html"><i class="fas fa-chart-bar"></i> Report</a>
+                <a href="./updates.html"><i class="fas fa-bell"></i> Updates</a>
+                <a href="./profile.html"><i class="fas fa-cog"></i> Profile</a>
+            </div>
+        </div>
+    </aside>
+    <nav>
+        <div class="nav-logout">
+            <a href="../Login.html">Logout <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span></a>
+        </div>
+    </nav>
+
+    <main>
+        <section><!--transaction table-->
+            <div class="container">
+                <h1>Transaction List</h1>
+                <?php
+                // Call the function to display transaction
+                echo displayTransactions();// this function will output the transaction table
+                ?>
+            </div><!--End of Transaction Table-->
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,411 @@
+body {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 50px;
+    height: auto;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(240, 240, 240);
+    position: relative;
+}
+
+
+/*Login page*/
+.login-container {
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.185);
+    backdrop-filter: blur(5px);
+    border: solid 1px rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 380px;
+    height: auto;
+    padding: 40px 50px 20px 50px;
+    margin: auto;
+    top: 100px;
+}
+
+.login-container h1 {
+    text-align: left;
+}
+
+.login-container a{
+    text-decoration: none;
+    color: #007bff;
+}
+
+.login-container a:hover{
+    color: black;
+    transition: all 0.5 ease;
+}
+
+.login-container button{
+    font-size: large;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    margin-right: 22px;
+}
+
+.form-group input{
+    background-color: rgba(255, 255, 255, 0.185);
+    backdrop-filter: blur(1px);
+    border-radius: 10px;
+}
+
+.input{
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(45, 45, 214);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: blue;
+}
+
+
+
+/*register page*/
+
+
+/*Dashboard Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 4.5rem;
+    background-color: rgb(235, 235, 235);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 1;
+}
+
+.nav-logout a {
+    color: #333;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.nav-logout a:hover {
+    color: #007bff;
+}
+
+/*Dashboard sidebar Sidebar Styles */
+.sidenav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: rgb(223, 223, 223);
+    color: #000000;
+    z-index: 2;
+}
+
+.side-icon {
+    height: 4rem;
+    width: 200px;
+    text-align: center;;
+}
+
+.side-icon img {
+    width: auto;
+    height: 4rem;
+}
+
+.side-button {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.side-button a {
+    color: #000000;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 4px 0;
+    border-radius: 4px;
+}
+
+.side-button a:hover {
+    color: #007bff;
+}
+
+/*dashboard main page*/
+main{
+    margin-left: 300px;
+    margin-top: 6rem;
+    margin-right: 120px;
+}
+
+.dashboard-card{
+    margin-left: 20px;
+    display: flex;
+    gap: 70px; 
+}
+
+.dashboard-card h1, .topup-card h1 {
+    color: #007bff;
+}
+
+.main-card {
+    width: 500px;
+    height: 200px;
+    background-image: url('../assets/');
+    background-size:calc(100% + 0px) calc(100% + 0px);
+    background-repeat: no-repeat;
+    background-position: center;
+    /*background-color: #bfbfbf;  similar to the grey */
+    background-color: #e4e4e4;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-icon {    
+    top: 5px;
+    left: 5px;
+    width: 50px;
+}
+
+.bottom-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.bottom-text div {
+    font-size: 14px;
+    color: #000;
+}
+
+.amount {
+    font-weight:bolder;
+    font-size:larger;
+}
+
+.valid {
+    text-align: right;
+    font-weight:bolder;
+    font-size:larger;
+}
+
+.transactions-card, .transactions-1-card {
+    width: 200px;
+    height: 70px;
+    /*background-color: #bfbfbf;  similar to the grey */
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.transactions-card h1, .transactions-1-card h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    row-gap: 20px;
+}
+
+/*transaction table/ page*/
+table {
+    width: 900px;
+    margin-top: 30px;
+    border-collapse: collapse;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4a814a;
+    color: white;
+}
+
+
+tr:hover {
+    background-color: #ddd;
+}
+
+
+/*top up page*/
+.red-button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+/*Make button darker red when hovering*/
+.red-button:hover:enabled {
+    background-color: blue;
+}
+
+/*Style for disabled button*/
+.red-button:disabled {
+    background-color: rgb(163, 163, 243);
+    color: #ffffff;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.topup-card {
+    width: 200px;
+    height: 30px;
+    margin-bottom: 20px;
+    /*background-color: #bfbfbf;  similar to the grey */
+    background-color: #e4e4e4;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    justify-content: space-between;
+    text-align: center;
+    float: right;
+}
+
+.topup-card h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.topup-amount {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: first baseline;
+}
+
+.topup-amount input {
+    width: 100px;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.top-up button {
+    width: 100px;
+    border-radius: 50px;
+    background-color: rgb(45, 45, 214);
+    margin: 0;
+    text-align: center;
+}
+
+.topup-button-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 400px;
+    margin: 20px 0;
+}
+
+.topup-button-grid button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 50px;
+    background-color: rgb(45, 45, 214);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.topup-button-grid button:hover {
+    background-color: blue;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
+/*report page*/
+.report-button {    
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: not-allowed;
+    transition: opacity 0.3s;
+}
+
+/* When faded */
+.report-button.faded {
+    opacity: 0.5; /* faded look */
+}
+
+.button-row {
+    display: flex;
+    gap: 10px; /* adds spacing between buttons */
+    margin-bottom: 20px;
+}
+  
+.report-button {
+    flex: 1;
+    background-color: #221ef2;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.form-description textarea{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 30px;
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayMobi - Temporary Receipt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .receipt {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px dashed #e0e0e0;
+        }
+
+        .receipt-logo {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .transaction-details {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .receipt-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            color: #2c3e50;
+        }
+
+        .receipt-row.total {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px dashed #e0e0e0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .discount {
+            color: #27ae60;
+        }
+
+        .receipt-footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.8rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px dashed #e0e0e0;
+        }
+
+        .warning {
+            color: #e74c3c;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .register-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+
+            .receipt {
+                box-shadow: none;
+                max-width: 100%;
+            }
+
+            .register-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <div class="receipt-header">
+            <div class="receipt-logo">🚌</div>
+            <h1>PayMobi Receipt</h1>
+            <div class="transaction-details">
+                <p>Transaction ID: <span id="transactionId">TXN-2504-1234</span></p>
+                <p id="transactionDate"></p>
+            </div>
+        </div>
+
+        <div class="receipt-body">
+            <div class="receipt-row">
+                <span>From:</span>
+                <span id="startLocation"></span>
+            </div>
+            <div class="receipt-row">
+                <span>To:</span>
+                <span id="endLocation"></span>
+            </div>
+            <div class="receipt-row">
+                <span>Base Fare:</span>
+                <span>PHP 15.00</span>
+            </div>
+            <div class="receipt-row">
+                <span>Distance:</span>
+                <span id="distance"></span>
+            </div>
+            <div class="receipt-row discount">
+                <span>Discount:</span>
+                <span id="discountAmount"></span>
+            </div>
+            <div class="receipt-row total">
+                <span>Total Fare:</span>
+                <span id="totalFare"></span>
+            </div>
+        </div>
+
+        <div class="receipt-footer">
+            <p>This is your temporary receipt</p>
+            <p class="warning">Valid for 24 hours only</p>
+            <p>Register a card to receive digital receipts</p>
+            <a href="../register_card.html" class="register-btn">Register Card Now</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Set receipt data
+            document.getElementById('startLocation').textContent = urlParams.get('start') || 'Meycauayan';
+            document.getElementById('endLocation').textContent = urlParams.get('end') || 'Malolos';
+            document.getElementById('distance').textContent = (urlParams.get('distance') || '12.5') + ' km';
+            document.getElementById('discountAmount').textContent = 'PHP ' + (urlParams.get('discount') || '0.00');
+            document.getElementById('totalFare').textContent = 'PHP ' + (urlParams.get('fare') || '24.89');
+            
+            // Set current date/time
+            const now = new Date();
+            document.getElementById('transactionDate').textContent = now.toLocaleString();
+        });
+    </script>
+</body>
+</html>

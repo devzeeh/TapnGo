@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style='
+        max-width: 350px;
+        margin: 20px auto;
+        font-family: \"Courier New\", monospace;
+        background: #4e4e4e;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        color: #333;
+        '>
+        <div style="margin: 30px;">
+            <h2 style='margin-top: 0; text-align: center;'>PayMobi RECEIPT</h2>
+            <hr style='border-top: 2px dashed #ccc;'>
+            <p>Transaction ID: <span style="float: right;">SMPL123</span></p>
+            <p>Date: <span style="float: right;">$date</span></p>
+            <p><strong>Customer:</strong> <span style="float: right;">$Sender</span></p><!--name of customer-->
+            <p><strong>Origin:</strong> <span style="float: right;">$start</span></p>
+            <p><strong>Destination:</strong> <span style="float: right;">$end</span></p>
+            <p><strong>Discount:</strong> <span style="float: right;">$discount</span></p>
+            <h2 style="font-size: 30px; color:rgb(0, 0, 0);">Amount: <span style="float: right;">$12.32</span></h2>
+            <hr style='border-top: 2px dashed #ccc; margin: 30px 0;'>
+            <p style='font-size: 12px; color: #999; text-align: center;'><span style="font-weight: bolder; color: #3a3a3a;">This served as your Fare E-receipt. Stay safe on your journey, Thank You!.</span></p>
+        </div>
+        
+        <div style="background-color: rgb(211, 211, 211); margin: 0px; text-align: center; font-size: 12px;">
+            <p><hr>This is a system-generated receipt. Please do not reply. <br>This is a test email sent from a PHPMailer using Gmail SMTP. Please Do Not Reply!</p>
+        </div>
+    </div>
+</body>
+</html>
