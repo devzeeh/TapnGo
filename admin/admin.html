@@ -1,0 +1,147 @@
+<?php
+include '../backend/cards.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!--icons libraries-->
+    <link rel="stylesheet" href="../style/Style.css">
+    <link rel="icon" href="../assets/Favicon/PayMobi.png">
+    <title>Traverse | Dashboard - Welcome Customer</title>
+    <style>
+        .admin-container {
+            padding: 2rem;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: #007bff;
+            margin-right: 1rem;
+        }
+
+        .form-group {
+        margin-bottom: 1.5rem;
+        position: relative;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #000000;
+        font-weight: 500;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    </style>
+</head>
+
+<body>
+    <aside class="sidenav">
+        <div>
+            <div class="side-icon">
+                <a href="../Admin/admin.html"><img src="../assets/PayMobi.png" alt="Logo"></a>
+            </div>
+            <hr>
+            <div class="side-button">
+                <a href="../Admin/admin.html" style="color: #007bff;"><i class="fas fa-home"></i> Admin Dashboard</a>
+            </div>
+        </div>
+    </aside>
+    <nav>
+        <div class="nav-logout">
+            <a href="../backend/redirect.php">Logout <span class="icon"><i
+                        class="fa-solid fa-right-from-bracket"></i></span></a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1>Card Management Dashboard</h1>
+                <div class="header-actions">
+
+                </div>
+            </div>
+
+            <div class="card-stats">
+                <div class="stat-card">
+                    <i class="fas fa-credit-card"></i>
+                    <div class="stat-info">
+                        <h3>Total Cards</h3>
+                        <p id="totalCards"><?php echo totalCards(); ?></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="stat-info">
+                        <h3>Active Cards</h3>
+                        <p id="activeCards"><?php echo activeCards(); ?></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-times-circle"></i>
+                    <div class="stat-info">
+                        <h3>Expired Cards</h3>
+                        <p id="inactiveCards"><?php echo expiredCards(); ?></p>
+                    </div>
+                </div>
+            </div>
+
+            <form action="../backend/cards.php" method="post">
+                <div style="display: flex; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="cardUID" >Enter Card UID</label>
+                        <input type="text" id="cardUID" name="cardUID" placeholder="Card UID">
+                    </div>
+
+                    <div class="form-group" style="align-self: flex-end; display: flex; gap: 0.5rem;">
+                        <button type="submit" style="padding: 0.8rem 1.5rem; border-radius: 8px; background: #007bff; color: white; border: none; cursor: pointer;">Insert</button>
+                        <button type="reset" style="padding: 0.8rem 1.5rem; border-radius: 8px; background: #818181; color: white; border: none; cursor: pointer;" >Cancel</button>
+                    </div>
+                </div>
+            </form>
+
+            <script>
+                document.getElementById('cardForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    document.getElementById('cardUID').value = '';
+                });
+            </script>
+        </div>
+    </main>
+</body>
+</html>
