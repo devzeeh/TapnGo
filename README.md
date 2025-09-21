@@ -33,6 +33,5 @@ The system allows commuters and customers to simply “tap” their RFID card to
 | Database | MySQL |
 | Libraries | Stripe API, PHPMailer |
 | Hardware Components | NodeMCU ESP8266, RC522 RFID |
-
 ---
 
